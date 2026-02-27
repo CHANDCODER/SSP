@@ -27,6 +27,7 @@
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="collections.html">Collections</a>
+            <a href="ornaments.html">Ornaments</a>
             <a href="gifting.html">Gifting</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
@@ -43,6 +44,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html" class="active">Home</a>
         <a href="collections.html">Collections</a>
+        <a href="ornaments.html">Ornaments</a>
         <a href="gifting.html">Gifting</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
@@ -56,32 +58,60 @@
         <div class="banner-background"></div>
         <div class="banner-container">
             <div class="poster-wrapper">
-                <img src="https://res.cloudinary.com/domlhckfb/image/upload/v1771959488/SSSP/SSP%20HOSTED/5_qvbeqb.jpg" alt="Current Event Poster" class="highlight-poster">
+                <img src="https://res.cloudinary.com/domlhckfb/image/upload/v1771959488/SSSP/5_qvbeqb.jpg" alt="Current Event Poster" class="highlight-poster">
                 <div class="poster-overlay"></div>
             </div>
         </div>
     </section>
 
 
-    <!-- SILVER RATE BADGE -->
-    <div class="silver-badge-section">
-        <div class="silver-badge-container">
-            <div class="silver-card">
-                <div class="silver-shimmer"></div>
-                <div class="silver-glow-ring"></div>
-                <p class="silver-card-label">TODAY'S SILVER RATE</p>
-                <div class="silver-price-row">
-                    <span class="silver-currency">₹</span>
-                    <span class="silver-price" id="silverRatePerGram">115</span>
-                    <span class="silver-unit">/ gm</span>
+    <!-- RATE BADGES -->
+    <div class="rate-badges-section">
+
+        <!-- SILVER BADGE -->
+        <div class="rate-badge-container">
+            <div class="rate-card silver-rate-card">
+                <div class="rate-shimmer"></div>
+                <div class="rate-glow-ring"></div>
+                <p class="rate-card-label">TODAY'S SILVER RATE</p>
+                <div class="rate-price-row">
+                    <span class="rate-currency">₹</span>
+                    <span class="rate-price" id="silverRatePerGram">115</span>
+                    <span class="rate-unit">/ gm</span>
                 </div>
-                <div class="silver-card-footer">
-                    <div class="silver-live-dot"></div>
-                    <span class="silver-updated">Updated: <span id="silverRateDate">28 Feb 2026</span></span>
-                    <span class="silver-purity">· 925 Sterling</span>
+                <div class="rate-card-footer">
+                    <div class="rate-live-dot silver-dot"></div>
+                    <span class="rate-updated">
+                        <span id="silverRateDate">28 Feb 2026</span>
+                        &nbsp;·&nbsp;
+                        <span id="silverRateTime">10:30 AM</span>
+                    </span>
                 </div>
             </div>
         </div>
+
+        <!-- GOLD BADGE -->
+        <div class="rate-badge-container">
+            <div class="rate-card gold-rate-card">
+                <div class="rate-shimmer"></div>
+                <div class="rate-glow-ring gold-ring"></div>
+                <p class="rate-card-label gold-label">TODAY'S GOLD RATE</p>
+                <div class="rate-price-row">
+                    <span class="rate-currency gold-currency">₹</span>
+                    <span class="rate-price gold-price" id="goldRatePerGram">9,450</span>
+                    <span class="rate-unit gold-unit">/ gm</span>
+                </div>
+                <div class="rate-card-footer">
+                    <div class="rate-live-dot gold-dot"></div>
+                    <span class="rate-updated gold-updated">
+                        <span id="goldRateDate">28 Feb 2026</span>
+                        &nbsp;·&nbsp;
+                        <span id="goldRateTime">10:30 AM</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- HERO SECTION -->
@@ -175,6 +205,7 @@
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="collections.html">Collections</a></li>
+                    <li><a href="ornaments.html">Ornaments</a></li>
                     <li><a href="gifting.html">Gifting</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
