@@ -10,7 +10,6 @@ if (hamburger && mobileMenu) {
         hamburger.classList.toggle('open');
         mobileMenu.classList.toggle('open');
     });
-
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('open');
@@ -19,32 +18,43 @@ if (hamburger && mobileMenu) {
     });
 }
 
-// ── Visitor Counter Animation ──
-function animateCounter(el, target, duration) {
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-        start += step;
-        if (start >= target) {
-            start = target;
-            clearInterval(timer);
-        }
-        el.textContent = Math.floor(start).toLocaleString('en-IN') + '+';
-    }, 16);
+// ══════════════════════════════════════════
+//   REAL-TIME VISITOR COUNTER
+//   Uses CountAPI — free, no account needed
+//   Counts every unique page visit
+// ══════════════════════════════════════════
+const visitorEl = document.getElementById('visitorCount');
+
+if (visitorEl) {
+    // Hit the counter — increments by 1 each visit and returns total
+    fetch('https://api.countapi.xyz/hit/srisuvarnasilverpalace.com/visits')
+        .then(res => res.json())
+        .then(data => {
+            const total = data.value;
+            animateCounterTo(visitorEl, total);
+        })
+        .catch(() => {
+            // If API fails, show a fallback gracefully
+            visitorEl.textContent = '—';
+        });
 }
 
-const counterEl = document.getElementById('visitorCount');
-if (counterEl) {
-    const TARGET = 12847;
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounter(counterEl, TARGET, 2000);
-                observer.disconnect();
-            }
-        });
-    }, { threshold: 0.5 });
-    observer.observe(counterEl);
+function animateCounterTo(el, target) {
+    let current = Math.max(0, target - 80);
+    const duration = 1800;
+    const steps = 60;
+    const increment = (target - current) / steps;
+    let step = 0;
+
+    const timer = setInterval(() => {
+        current += increment;
+        step++;
+        el.textContent = Math.floor(current).toLocaleString('en-IN');
+        if (step >= steps) {
+            el.textContent = target.toLocaleString('en-IN');
+            clearInterval(timer);
+        }
+    }, duration / steps);
 }
 
 // ══════════════════════════════════════════
@@ -52,95 +62,35 @@ if (counterEl) {
 // ══════════════════════════════════════════
 
 // ── 1. Disable Right Click ──
-document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-});
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ── 2. Disable Text Selection ──
-document.addEventListener('selectstart', function (e) {
-    e.preventDefault();
-});
+document.addEventListener('selectstart', e => e.preventDefault());
 
 // ── 3. Disable Image Dragging ──
-document.addEventListener('dragstart', function (e) {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-        }
+document.addEventListener('dragstart', e => {
+    if (e.target.tagName === 'IMG') e.preventDefault();
 });
 
 // ── 4. Disable Keyboard Shortcuts ──
 document.addEventListener('keydown', function (e) {
     const key = e.key.toUpperCase();
-
-    // Ctrl+U — View Source
-    if (e.ctrlKey && key === 'U') {
-        e.preventDefault();
-            return;
-    }
-
-    // Ctrl+S — Save Page
-    if (e.ctrlKey && key === 'S') {
-        e.preventDefault();
-            return;
-    }
-
-    // Ctrl+Shift+I — DevTools
-    if (e.ctrlKey && e.shiftKey && key === 'I') {
-        e.preventDefault();
-            return;
-    }
-
-    // Ctrl+Shift+J — DevTools Console
-    if (e.ctrlKey && e.shiftKey && key === 'J') {
-        e.preventDefault();
-            return;
-    }
-
-    // Ctrl+Shift+C — DevTools Inspector
-    if (e.ctrlKey && e.shiftKey && key === 'C') {
-        e.preventDefault();
-            return;
-    }
-
-    // F12 — DevTools
-    if (e.key === 'F12') {
-        e.preventDefault();
-            return;
-    }
-
-    // Ctrl+A — Select All
-    if (e.ctrlKey && key === 'A') {
-        e.preventDefault();
-        return;
-    }
-
-    // Ctrl+C — Copy
-    if (e.ctrlKey && key === 'C') {
-        e.preventDefault();
-            return;
-    }
-
-    // Ctrl+P — Print
-    if (e.ctrlKey && key === 'P') {
-        e.preventDefault();
-            return;
-    }
+    if (e.ctrlKey && key === 'U') { e.preventDefault(); return; }
+    if (e.ctrlKey && key === 'S') { e.preventDefault(); return; }
+    if (e.ctrlKey && key === 'C') { e.preventDefault(); return; }
+    if (e.ctrlKey && key === 'A') { e.preventDefault(); return; }
+    if (e.ctrlKey && key === 'P') { e.preventDefault(); return; }
+    if (e.ctrlKey && e.shiftKey && key === 'I') { e.preventDefault(); return; }
+    if (e.ctrlKey && e.shiftKey && key === 'J') { e.preventDefault(); return; }
+    if (e.ctrlKey && e.shiftKey && key === 'C') { e.preventDefault(); return; }
+    if (e.key === 'F12') { e.preventDefault(); return; }
 });
 
-// ── 5. Disable Print Screen (best effort) ──
-document.addEventListener('keyup', function (e) {
-    if (e.key === 'PrintScreen') {
-        navigator.clipboard.writeText('').catch(() => {});
-        }
+// ── 5. Disable Print Screen ──
+document.addEventListener('keyup', e => {
+    if (e.key === 'PrintScreen') navigator.clipboard.writeText('').catch(() => {});
 });
 
-// ── 6. Disable Copy via clipboard event ──
-document.addEventListener('copy', function (e) {
-    e.preventDefault();
-});
-
-// ── 7. Disable Cut ──
-document.addEventListener('cut', function (e) {
-    e.preventDefault();
-});
-
+// ── 6. Disable Copy & Cut ──
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
