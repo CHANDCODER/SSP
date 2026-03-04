@@ -709,7 +709,7 @@ footer {
     .highlight-poster { width: 100%; max-height: 55vh; object-fit: cover; }
 
     /* Push rate badges down slightly below the poster */
-    .rate-badges-section { margin-top: 12px; }
+    .rate-badges-section { margin-top: 40px; }
 
     .page-header { padding: 120px 5% 60px; }
     .page-header h1 { font-size: 2.2rem; }
